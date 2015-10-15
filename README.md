@@ -40,4 +40,9 @@ sudo ./opendp -c 0x1 -n 4 -- -p 0x1 --config="(0,0,0)"
 ```
 cd netdp_cmd  
 sudo ./build/netdpcmd  
+netdp> ip addr del 2.2.2.2/24 dev eth0
+netdp> ip addr add 10.128.80.44/22 dev eth0
+netdp> ip route add 0.0.0.0/0 via 10.128.83.254
+quit
+// can ping
 ```
