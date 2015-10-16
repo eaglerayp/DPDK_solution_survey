@@ -19,7 +19,23 @@ cd mtcp/src
 make
 ```
 
-6. set mtcp.conf and config/route.conf(arp.conf)  per app
+6. set mtcp.conf and config/route.conf(arp.conf) per app 
+```
+/*
+Route.conf and arp.conf settings example
+(Connect to Internet have to set static roule and must set their arp same as proxy in this version.)
+*/
+ROUTES 1   // how many routing rules , route.conf choose which dpdk port to send pkts
+173.194.72.100/32 dpdk0
+
+ARP_ENTRY 2
+10.128.83.254/32 48:0F:CF:0A:A7:E3   //proxy
+173.194.72.100/32 48:0F:CF:0A:A7:E3  
+//because mtcp lack of gateway settings, we have to set gateway by setting outer network's mac same as gateway, 
+//so port know to send pkts to gateway, then gateway forward them.
+```  
+
+
 
 ## opendp
 
