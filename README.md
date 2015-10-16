@@ -62,3 +62,14 @@ netdp> ip route add 0.0.0.0/0 via 10.128.83.254
 quit
 // can ping
 ```
+
+## libos-nuse
+
+* Github: https://github.com/libos-nuse/net-next-nuse
+* run libnuse application control nic.
+* Usage: test protocol in its document instead of performance.
+
+## rumprun
+
+* Github: https://github.com/rumpkernel/drv-netif-dpdk
+* have to build rumprunkernel first, because rumprun-dpdk run under rumprun kernel.
