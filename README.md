@@ -1,5 +1,8 @@
 # DPDK + TCP/IP solutions building step
 
+## DPDK SDK
+* comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
+
 ## mtcp
 
 * Github: https://github.com/eunyoung14/mtcp 
@@ -66,8 +69,35 @@ quit
 ## libos-nuse
 
 * Github: https://github.com/libos-nuse/net-next-nuse
-* run libnuse application control nic.
-* Usage: test protocol in its document instead of performance.
+* The main purpose: test protocol from their document.
+* build dpdk process learned from: https://github.com/libos-nuse/linux-libos-tools/issues/19
+1. build dpdk-enable NUSE
+```
+cd nuse
+make defconfig
+make library ARCH=lib
+./arch/lib/tools/dpdk-sdk-build.sh  //comment lib kcompat.h Line:3868 skb_set_hash if encouter build error
+make library ARCH=lib DPDK=yes
+```
+2. set nuse.conf
+```
+interface dpdk0
+	address 10.128.80.44
+	netmask 255.255.252.0
+	macaddr 00:15:17:8f:c2:45
+	viftype DPDK
+
+route
+	network 0.0.0.0
+	netmask 0.0.0.0
+	gateway 10.128.83.254
+```
+3. set nic to dpdk mode
+4. test 
+```
+sudo NUSECONF=nuse.conf ./nuse ping 210.242.127.88
+```
+
 
 ## rumprun
 
