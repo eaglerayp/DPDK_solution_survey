@@ -2,6 +2,7 @@
 
 ## DPDK SDK
 * comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
+* use /tools/setup.sh  
 
 ## mtcp
 
@@ -44,8 +45,8 @@ ARP_ENTRY 2
 
 * Github: https://github.com/opendp/dpdk-odp
 
-1.  setting dpdk (include compile and setup.sh)
-2. compile opendp 
+1. setting dpdk (include compile and setup.sh)
+2. compile opendp and its application (make in folder)
 ```
 cd .../test/opendp/  
 make  
