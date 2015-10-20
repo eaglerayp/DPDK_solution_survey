@@ -9,10 +9,9 @@
 * Github: https://github.com/eunyoung14/mtcp 
 
 1. setting dpdk (include compile and setup.sh)
-2. ./tools/setup_iface_single_process.sh 3    (**create /dev/dpdk-ifce, modify IP settings in /etc/network/interfaces**) example script:
+2. sudo ./tools/setup_iface_single_process.sh 3    (**create /dev/dpdk-ifce, modify IP settings in /etc/network/interfaces**) modified example script:
 ```
-.
-.
+//    /setup_iface_single_process.sh   argument is useless in my setting
 .
 while [ $counter -gt 0 ]
 do
@@ -20,9 +19,11 @@ do
     ifup dpdk$(($counter - 1)) 
     let "counter=$counter - 1"
 done
-.
-.
-.
+//    /etc/network/interfaces
+iface dpdk0 inet static
+address 10.128.80.44
+netmask 255.255.252.0
+gateway 10.128.83.254
 ```
 3. use ifup with /etc/network/interfaces  setup IP, routing
 4. create soft links   
