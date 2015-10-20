@@ -16,8 +16,6 @@
 .
 while [ $counter -gt 0 ]
 do
-    let "ip=$(($counter - 1))+$1"
-    echo "/sbin/ifup dpdk$(($counter - 1)) "
     ifconfig dpdk$(($counter - 1))  up
     ifup dpdk$(($counter - 1)) 
     let "counter=$counter - 1"
