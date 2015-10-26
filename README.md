@@ -128,4 +128,5 @@ comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 s
 export RTE_SDK=$(pwd)/dpdk
 ./dpdk/tools/setup.sh 
 9 //build x86_64_native_linuxapps 
+./buildme.sh
 ```
