@@ -118,4 +118,14 @@ sudo NUSECONF=nuse.conf ./nuse ping 210.242.127.88
 ## rumprun
 
 * Github: https://github.com/rumpkernel/drv-netif-dpdk
-* have to build rumprunkernel first, because rumprun-dpdk run under rumprun kernel.
+
+```
+git clone https://github.com/rumpkernel/drv-netif-dpdk.git
+cd drv-netif-dpdk
+git submodule update --init
+chmod +x buildme.sh
+comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
+export RTE_SDK=$(pwd)/dpdk
+./dpdk/tools/setup.sh 
+9 //build x86_64_native_linuxapps 
+```
