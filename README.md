@@ -119,6 +119,8 @@ sudo NUSECONF=nuse.conf ./nuse ping 210.242.127.88
 
 * Github: https://github.com/rumpkernel/drv-netif-dpdk
 
+
+### LINUX
 ```
 git clone https://github.com/rumpkernel/drv-netif-dpdk.git
 cd drv-netif-dpdk
@@ -128,5 +130,28 @@ comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 s
 export RTE_SDK=$(pwd)/dpdk
 ./dpdk/tools/setup.sh 
 9 //build x86_64_native_linuxapps 
+./buildme.sh
+```
+
+### BSD  (temp, I cannot build DPDK!!)
+```
+pkg install bash
+pkg install gmake
+pkg install git
+pkg install lang/gcc49  
+// mv /usr/local/bin/gcc49 /usr/bin/cc  ln -s cc cc1
+git clone https://github.com/rumpkernel/drv-netif-dpdk.git
+cd drv-netif-dpdk
+git submodule update --init   // NetBSD have to add CA
+chmod +x buildme.sh
+
+export RTE_SDK=$(pwd)/dpdk
+mv /usr/bin/make /usr/bin/make_backup
+cp /usr/local/bin/gmake /usr/bin/make
+vim /dpdk/tools/setup.sh   
+1 line  (change to bash e.g., /usr/local/bin/bash)
+100 line make-> gmake
+./dpdk/tools/setup.sh 
+7 //build x86_64_native_linuxapps 
 ./buildme.sh
 ```
