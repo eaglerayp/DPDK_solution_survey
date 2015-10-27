@@ -128,9 +128,7 @@ git submodule update --init
 chmod +x buildme.sh
 comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
 export RTE_SDK=$(pwd)/dpdk
-./dpdk/tools/setup.sh 
-9 //build x86_64_native_linuxapps 
-./buildme.sh
+./buildme.sh   //it will update netBSD src, setup DPDK, rumpmake, compile example
 ```
 
 ### BSD  (temp, I cannot build DPDK!!)
@@ -148,10 +146,5 @@ chmod +x buildme.sh
 export RTE_SDK=$(pwd)/dpdk
 mv /usr/bin/make /usr/bin/make_backup
 cp /usr/local/bin/gmake /usr/bin/make
-vim /dpdk/tools/setup.sh   
-1 line  (change to bash e.g., /usr/local/bin/bash)
-100 line make-> gmake
-./dpdk/tools/setup.sh 
-7 //build x86_64_native_linuxapps 
 ./buildme.sh
 ```
