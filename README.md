@@ -118,7 +118,7 @@ sudo NUSECONF=nuse.conf ./nuse ping 210.242.127.88
 ## rumprun
 
 * Github: https://github.com/rumpkernel/drv-netif-dpdk
-
+* library usage: https://www.freelists.org/post/rumpkernel-users/Component-descriptions-was-Re-Question-Rumpkernel-Profiling-Rumpconf
 
 ### LINUX
 ```
