@@ -1,6 +1,7 @@
 # DPDK + TCP/IP solutions building step
 
 ## DPDK SDK
+### LINUX
 * comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
 * use /tools/setup.sh  
 
@@ -8,8 +9,8 @@
 
 * Github: https://github.com/eunyoung14/mtcp 
 
-1. setting dpdk (include compile and setup.sh)
-2. sudo ./tools/setup_iface_single_process.sh 3    (**create /dev/dpdk-ifce, modify IP settings in /etc/network/interfaces**) modified example script:
+1. setting dpdk (include compile and setup.sh)   mtcp support to dpdk-2.1.0
+2. sudo ./tools/setup_iface_single_process.sh 3    (**create /dev/dpdk-ifce, modify IP settings in /etc/network/interfaces, so arg useless**) modified example script:
 ```
 //    /setup_iface_single_process.sh   argument is useless in my setting
 .
@@ -50,8 +51,10 @@ ROUTES 1   // how many routing rules , route.conf choose which dpdk port to send
 ARP_ENTRY 2
 10.128.83.254/32 48:0F:CF:0A:A7:E3   //proxy
 173.194.72.100/32 48:0F:CF:0A:A7:E3  
-//because mtcp lack of gateway settings, we have to set gateway by setting outer network's mac same as gateway, 
-//so port know to send pkts to gateway, then gateway forward them.
+/*
+because mtcp lack of gateway settings, we have to set gateway by setting outer network's mac same as gateway, 
+so port know to send pkts to gateway, then gateway forward them.
+*/
 ```  
 
 
@@ -59,8 +62,9 @@ ARP_ENTRY 2
 ## opendp
 
 * Github: https://github.com/opendp/dpdk-odp
+* live project, commit frequently.
 
-1. setting dpdk (include compile and setup.sh)
+1. setting dpdk (include compile and setup.sh)  opendp support dpdk-2.1.0
 2. compile opendp and its application (make in folder)
 ```
 cd .../test/opendp/  
@@ -119,6 +123,7 @@ sudo NUSECONF=nuse.conf ./nuse ping 210.242.127.88
 
 * Github: https://github.com/rumpkernel/drv-netif-dpdk
 * library usage: https://www.freelists.org/post/rumpkernel-users/Component-descriptions-was-Re-Question-Rumpkernel-Profiling-Rumpconf
+* Now, cannot compile kqueue in Linux. Kqueue and epoll problem between Linux and BSD. Stop!
 
 ### LINUX
 ```
