@@ -123,7 +123,7 @@ sudo NUSECONF=nuse.conf ./nuse ping 210.242.127.88
 
 * Github: https://github.com/rumpkernel/drv-netif-dpdk
 * library usage: https://www.freelists.org/post/rumpkernel-users/Component-descriptions-was-Re-Question-Rumpkernel-Profiling-Rumpconf
-* Now, cannot compile kqueue in Linux. Kqueue and epoll problem between Linux and BSD. Stop!
+* Now, cannot compile kqueue in Linux. rumpapi沒有包含kqueue需要的header檔們,詢問作者的結果好像也是只有在BSD寫過kqueue的program.另外, 因為rump不是把kqueue轉換成epoll所以在rump+Nginx上運行可能會有同時存在epoll和kqueue的情況.目前還想不到解法先Stop!
 
 ### LINUX
 ```
@@ -134,6 +134,7 @@ chmod +x buildme.sh
 comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
 export RTE_SDK=$(pwd)/dpdk
 ./buildme.sh   //it will update netBSD src, setup DPDK, rumpmake, compile example
+//can run simple tcp, but no epoll and kqueue.
 ```
 
 ### BSD  (temp, I cannot build DPDK!!)
