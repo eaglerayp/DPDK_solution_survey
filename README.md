@@ -2,6 +2,7 @@
 
 ## DPDK SDK
 ### LINUX
+* reference: http://dpdk.org/doc/guides/linux_gsg/sys_reqs.html
 * hugepage大小和數量的boot設定寫在kernel command line：/etc/default/grub e.g.,:
 ```
 // /etc/default/grub 
