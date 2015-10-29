@@ -2,6 +2,17 @@
 
 ## DPDK SDK
 ### LINUX
+* hugepage大小和數量的boot設定寫在kernel command line：/etc/default/grub e.g.,:
+```
+// /etc/default/grub 
+GRUB_CMDLINE_LINUX_DEFAULT="text default_hugepagesz=2M hugepagesz=2M hugepages=1024 iommu=pt intel_iommu=on quiet splash"
+
+$ sudo update-grub 
+//會把設定寫入/boot/grub/grub.cfg
+```
+隨時調整2M hugepage數量：`echo 2048 > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages`
+因為hugepage是連續的memory, 所以儘量在boot的時候就先設定/預留下來, 像是1G hugepage因為太大,所以就只能在boot設定無法隨時調整數量,
+從`cat /proc/cpCPU的flags`：如果pse存在，hugepage可用2M; pdpe1gb，可用1G。
 * comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
 * use /tools/setup.sh  
 
