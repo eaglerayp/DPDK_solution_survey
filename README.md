@@ -13,6 +13,7 @@ $ sudo update-grub
 隨時調整2M hugepage數量：`echo 2048 > /sys/kernel/mm/hugepages/hugepages-2048kB/nr_hugepages`
 因為hugepage是連續的memory, 所以儘量在boot的時候就先設定/預留下來, 像是1G hugepage因為太大,所以就只能在boot設定無法隨時調整數量,
 從`cat /proc/cpCPU的flags`：如果pse存在，hugepage可用2M; pdpe1gb，可用1G。
+* use hugepage by DPDK: add line:`nodev /mnt/huge hugetlbfs defaults 0 0` to the `/etc/fstab` file
 * comment dpdkfolder/lib/librte_eal/linuxapp/kni/ethtool/igb/kcompat.h Line:3868 skb_set_hash if encouter build error
 * use /tools/setup.sh  
 
