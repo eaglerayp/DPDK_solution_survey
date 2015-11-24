@@ -22,8 +22,8 @@ $ sudo update-grub
 
 * Github: https://github.com/eunyoung14/mtcp 
 
-1. setting dpdk (include compile and setup.sh)   mtcp support to dpdk-2.1.0
-2. sudo ./tools/setup_iface_single_process.sh 3    (**create /dev/dpdk-ifce, modify IP settings in /etc/network/interfaces, so arg useless**) modified example script:
+* setting dpdk (include compile and setup.sh)   mtcp support to dpdk-2.1.0
+* sudo ./tools/setup_iface_single_process.sh 3    (**create /dev/dpdk-ifce, modify IP settings in /etc/network/interfaces, so arg useless**) modified example script:
 ```
 //    /setup_iface_single_process.sh   argument is useless in my setting
 .
@@ -39,20 +39,21 @@ address 10.128.80.44
 netmask 255.255.252.0
 gateway 10.128.83.254
 ```
-3. use ifup with /etc/network/interfaces  setup IP, routing
-4. create soft links   
+* use ifup with /etc/network/interfaces  setup IP, routing
+* create soft links   
 ```  
-ln -s <path_to_dpdk_2_1_0_directory>/x86_64-native-linuxapp-gcc/lib lib  
-ln -s <path_to_dpdk_2_1_0_directory>/x86_64-native-linuxapp-gcc/include include
+cd dpdk/
+ln -s ../dpdk-2.1.0/x86_64-native-linuxapp-gcc/lib lib  
+ln -s ../dpdk-2.1.0/x86_64-native-linuxapp-gcc/include include
 ```
-5. setup mtcp library 
+* setup mtcp library 
 ```
-./configure --with-dpdk-lib=$<path_to_mtcp_release_v3>/dpdk  
+./configure --with-dpdk-lib=$(pwd)/dpdk  
 cd mtcp/src  
 make
 ```
 
-6. set mtcp.conf and config/route.conf(arp.conf) per app 
+* set mtcp.conf and config/route.conf(arp.conf) per app 
 ```
 /*
 Route.conf and arp.conf settings example
